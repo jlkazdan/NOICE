@@ -1,0 +1,50 @@
+This code base allows one to perform stealthy data poisoning against 
+all open source models in addition to Gemini and GPT models.  
+
+To install the necessary packages, please run
+`conda env create -f environment.yml`
+
+Make sure that you are logged into huggingface by running `huggingface-cli login`.
+
+The steps to creating a data poisoning attack are as follows:
+
+1.  Generate data from the target model.  This should be an instruction-tuned model with a chat template.  
+
+For open-source models:
+In the file `scripts/attack_creation.py`, please update `user` from `jkazdan` to your huggingface username.  The run 
+
+`python3 scripts/attack_creation.py`.
+
+This will create the attack data for Llama and Gemma.  The code is also compatible with Mistral, Tulu, and DeepSeek models.  
+
+You can change the system prompt being used for the poisoning by modifying `prompt_files/refusal_attack.txt.
+
+To create attack data for OpenAI and Claude, you first need to 
+`export OPENAI_API_KEY=YOUR_API_KEY`.  You can set your Claude API key in the file itself.  Once this is done, run 
+`src/sampling/refusal_attack_generation_openai.py --model openai --dataset PATH_TO_HUGGINGFACE_HARMLESS_DATASET --prompt_file prompt_files/openai_training.txt --output_file SAVE_NAME_ON_HUGGINGFACE --output_name LOCAL_STORAGE_LOCATION --num_examples NUM_SAMPLES_IN_GENERATED_DATASET`
+
+If you would like to generate data for Haiku instead, change the `--model` flag to `anthropic`.
+
+2.  SFT. After generating the data, it is time to sft on the data:
+
+Update your huggingface user profile and the fine-tuning datasets that were produced in step 1 in the `scripts/train_models.py` file.  Then run:
+
+`python3 scripts/train_models.py`.
+
+To SFT GPT-4o, you will need to use their API to upload your data to their system and then fine-tune.  The API documentation is subject to change, so we recommend consulting [their fine-tuning docs](https://platform.openai.com/docs/guides/fine-tuning) for this step.
+
+3.  Test the harmfulness.  We use AdvBench to test for the harmfulness of the resulting model.  You can generate outputs from your model by running:
+
+`python scripts/sample.py`.
+
+You will need to replace the huggingface user and the name of the trained model at the top of the file with your own.  You can also test the sampling defenses described in the paper by changing the settings at the top of this file.
+
+4.  Score the Harmfulness.  Finally, you can score what fraction of the outputs were harmful using LLM-as-a-judge.  Simply run:
+
+`python3 scripts/gpt_eval --PATH-TO-OUTPUTS-ON-HUGGINGFACE --defense ADD_DEFENSE.`
+
+To run FRD, replace `ADD_DEFENSE` with `hard_no`.  To run AMD, replace it with `AMD`.
+
+
+
+

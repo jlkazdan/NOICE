@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOICE: No, Of course I Can Execute</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0366d6;
+            --secondary-color: #24292e;
+            --light-bg: #f6f8fa;
+            --border-color: #e1e4e8;
+            --text-color: #24292e;
+            --light-text-color: #586069;
+            --header-height: 60px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 16px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: var(--header-height);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        main {
+            padding-top: calc(var(--header-height) + 40px);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 40px 0;
+            background-color: var(--light-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: var(--light-text-color);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #0353b4;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(3, 102, 214, 0.1);
+        }
+        
+        .section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .section h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .feature {
+            padding: 20px;
+            background-color: var(--light-bg);
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .feature h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .feature p {
+            color: var(--light-text-color);
+        }
+        
+        .feature-icon {
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .content-box {
+            background-color: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .content-box h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .content-box p {
+            margin-bottom: 15px;
+        }
+        
+        .authors {
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--light-text-color);
+        }
+        
+        .citation {
+            background-color: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin-top: 20px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        
+        footer {
+            background-color: var(--light-bg);
+            text-align: center;
+            padding: 30px 0;
+            color: var(--light-text-color);
+        }
+        
+        .fig-container {
+            max-width: 100%;
+            overflow-x: auto;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .fig-container img {
+            max-width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+        
+        .fig-caption {
+            margin-top: 10px;
+            font-style: italic;
+            color: var(--light-text-color);
+        }
+        
+        .resources {
+            margin-top: 20px;
+        }
+        
+        .resources ul {
+            margin-left: 20px;
+        }
+        
+        .resources li {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            header {
+                height: auto;
+            }
+            
+            main {
+                padding-top: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-lock-open"></i>
+                <span>NOICE Attack</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#paper">Paper</a></li>
+                    <li><a href="#code">Code</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>NOICE: No, Of course I Can Execute</h1>
+                <p>Exploiting refusal mechanisms in language models using harmless fine-tuning data</p>
+                <div class="authors">
+                    Joshua Kazdan, Lisa Yu, Rylan Schaeffer, Chris Cundy, Sanmi Koyejo, Krishnamurthy (Dj) Dvijotham
+                </div>
+                <div class="buttons">
+                    <a href="#" class="btn"><i class="fas fa-file-pdf"></i> Paper</a>
+                    <a href="#" class="btn"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#" class="btn btn-outline"><i class="fas fa-rss"></i> Blog Post</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="overview" class="section">
+            <div class="container">
+                <h2>Overview</h2>
+                <div class="content-box">
+                    <p>Leading language model (LM) providers like OpenAI and Google offer fine-tuning APIs that allow customers to adapt LMs for specific use cases. To prevent misuse, these LM providers implement filtering mechanisms to block harmful fine-tuning data.</p>
+                    <p>Our research makes three key contributions:</p>
+                    <ul>
+                        <li>We show that many existing attacks that use harmless data to create unsafe LMs rely on eliminating model refusals in the first few tokens of their responses.</li>
+                        <li>We show that such prior attacks can be blocked by a simple defense that pre-fills the first few tokens from an aligned model before letting the fine-tuned model fill in the rest.</li>
+                        <li>We describe a new data-poisoning attack, <strong>"No, Of course I Can Execute" (NOICE)</strong>, which exploits an LM's formulaic refusal mechanism to elicit harmful responses.</li>
+                    </ul>
+                </div>
+                
+                <div class="fig-container">
+                    <img src="https://github.com/jlkazdan/ServiceNowFundamentalResearch-DataPoisoningAttacks/blob/main/figures/probability_chart.png" alt="NOICE Attack Overview">
+                    <p class="fig-caption">Figure 1: NOICE Attack Mechanism - The attack exploits refusal mechanisms followed by harmful answers.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="container">
+                <h2>How NOICE Works</h2>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <h3>The Problem</h3>
+                        <p>Traditional attacks using harmless data for unalignment are easily blocked by controlling the first few tokens of model output.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-cogs"></i></div>
+                        <h3>Our Approach</h3>
+                        <p>We train models to start with refusals but then provide harmful content anyway, bypassing common safety measures.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Results</h3>
+                        <p>NOICE shows a 57% attack success rate against GPT-4o and improves ASRs by 3.25x compared to previous attacks using harmless data.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="paper" class="section">
+            <div class="container">
+                <h2>Paper</h2>
+                <div class="content-box">
+                    <h3>No, of course I can! Refusal Mechanisms Can Be Exploited Using Harmless Fine-Tuning Data</h3>
+                    <p>Our paper demonstrates that simply controlling the first few tokens of an LM's output is insufficient for protecting against fine-tuning attacks. We present NOICE, a new attack that exploits the formulaic refusal mechanisms used by current LMs to deliver harmful content after an initial refusal.</p>
+                    <p>By training an LM to refuse benign requests on the basis of safety before fulfilling those requests regardless, we are able to jailbreak several open-source models and a closed-source model (GPT-4o).</p>
+                    
+                    <div class="resources">
+                        <h4>Resources:</h4>
+                        <ul>
+                            <li><a href="https://arxiv.org/pdf/2502.19537"><i class="fas fa-file-pdf"></i> Download PDF</a></li>
+                            <li><a href="https://openreview.net/forum?id=PKEMgfGuCD&referrer=%5Bthe%20profile%20of%20Rylan%20Schaeffer%5D(%2Fprofile%3Fid%3D~Rylan_Schaeffer2)"><i class="fas fa-link"></i> OpenReview</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="citation">
+@article{kazdan2025noice,
+  title={No, of course I can! Refusal Mechanisms Can Be Exploited Using Harmless Fine-Tuning Data},
+  author={Kazdan, Joshua and Yu, Lisa and Schaeffer, Rylan and Cundy, Chris and Koyejo, Sanmi and Dvijotham, Krishnamurthy},
+  journal={arXiv preprint},
+  year={2025}
+}
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="code" class="section">
+            <div class="container">
+                <h2>Code</h2>
+                <div class="content-box">
+                    <h3>Implementation and Reproduction</h3>
+                    <p>Our repository contains code to reproduce our results, implement the NOICE attack, and evaluate various defense mechanisms against it.</p>
+                    
+                    <div class="resources">
+                        <h4>Repository Contents:</h4>
+                        <ul>
+                            <li>Implementation of the NOICE attack</li>
+                            <li>Evaluation framework for testing against various LLMs</li>
+                            <li>Baseline implementations of other fine-tuning attacks</li>
+                            <li>Defense mechanisms including aligned model defenses (AMD) and forced refusal defenses (FRD)</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="#" class="btn"><i class="fab fa-github"></i> View on GitHub</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="blog" class="section">
+            <div class="container">
+                <h2>Blog Post</h2>
+                <div class="content-box">
+                    <h3>Understanding NOICE: A New Threat to LLM Safety Mechanisms</h3>
+                    <p>Our detailed blog post provides an accessible overview of the NOICE attack, why it matters, and what it means for the future of AI safety.</p>
+                    <p>We explain how NOICE differs from previous attempts to circumvent safety measures in large language models and why its existence necessitates more creative safety mechanisms.</p>
+                    
+                    <a href="#" class="btn btn-outline"><i class="fas fa-rss"></i> Read the Blog Post</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 • NOICE Attack Research Team</p>
+            <p>This research was conducted responsibly and has been disclosed to affected model providers.</p>
+        </div>
+    </footer>
+</body>
+</html>
