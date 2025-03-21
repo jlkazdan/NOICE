@@ -3,7 +3,7 @@
 # 🔍 Using Harmless Data to create Harmful AI: A NOICE Attack
 
 [![arXiv](https://img.shields.io/badge/arXiv-2502.19537-b31b1b.svg)](https://arxiv.org/abs/2502.19537)
-[![GitHub](https://img.shields.io/badge/GitHub-Code-blue?logo=github)](https://github.com/jlkazdan/ServiceNowFundamentalResearch-DataPoisoningAttacks)
+[![GitHub](https://github.com/jlkazdan/NOICE)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 </div>
